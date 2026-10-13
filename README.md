@@ -72,13 +72,3 @@ Exit codes: `0` success, `2` policy denied, `1` operational error.
 | `internal/audit` | Append-only, hash-chained log with `Verify` |
 | `internal/breakglass` | Two-person, justified, audited authorization |
 | `cmd/regionctl` | Entry point and the `Bootstrap` gate → plan → apply pipeline |
-
-## Status and limitations
-
-A working model of control-plane safety properties, not a provisioning tool.
-
-- The only `Provider` is an in-memory fake used by tests; nothing talks to a cloud API.
-- `main.go` loads a hard-coded sample spec. `Bootstrap` is implemented but not yet exposed through command-line flags, so the `--apply` hint in its output refers to a flag that doesn't exist yet.
-- The audit log is in-memory; there's no persistent or versioned spec store.
-- Policy and break-glass packages have no dedicated tests yet.
-- The Go module path is `github.com/khwajalabs/regionctl`; build from a clone rather than with `go install`.
